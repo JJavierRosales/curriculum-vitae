@@ -12,9 +12,11 @@
 \moderncvicons{awesome}
 \usepackage{fontspec}
 \usepackage{moderntimeline}
-\usepackage{datetime}
+\usepackage[nodayofweek]{datetime}
 \newdateformat{monthyeardate}{\monthname[\THEMONTH], \THEYEAR}
 \usepackage{tabularx}
+
+
 
 
 \usepackage{ifthen}
@@ -69,7 +71,12 @@
 
 \definecolor{airbus}{RGB}{8,40,78}
 
-\newcommand{\cventrycustom}[3]{\textcolor{color1}{\scriptsize{\textsc{#1 #2 #3}}}}
+\newcommand{\cventrycustom}[2]{\textcolor{color1}{\scriptsize{
+\begin{tabular}{c c c}
+	\textsc{#1} & \ $\rightarrow$ \ & \textsc{#2}
+\end{tabular}
+}}}
+
 
 \firstname{\Large José Javier \vspace{9pt} \newline} % Your first name
 \familyname{\huge \textbf{Rosales Ruiz}} % Your last name
@@ -81,14 +88,20 @@
 
 %\date{\today}
 
-\address{ \textcolor{black}{\textsc{PERSONAL DATA}}\\ \\}{}
-\mobile{+34 645 526 183}
-\mobile{+44 (0)7394 811 610}
+%\address{ \textcolor{black}{\textsc{PERSONAL DATA}}\\ }{}
+%\mobile{+34 645 526 183}
+%\mobile{+44 (0)7394 811 610}
 %\phone[fixed]{+34 856 216 906}
 
-\email{javier.rosalesruiz@gmail.com }
+%\email{javier.rosalesruiz@gmail.com }
 
-\extrainfo{\\ \footnotesize \textcolor{black}{\textsc{LAST UPDATE}} \\ \normalsize \today }
+\extrainfo{\footnotesize \textcolor{black}{\textsc{Last update}} \\ \footnotesize \today 
+\\ \\ \footnotesize \textcolor{black}{\textsc{Languages}}\\ 
+\includegraphics[scale=0.1]{Images/UK_flag.png}
+\includegraphics[scale=0.022]{Images/SP_flag.png}}
+
+
+
 %\homepage{www.josejavier-rosalesruiz.com} % The first argument is the url for the clickable link, the second argument is the url displayed in the template - this allows special characters to be displayed such as the tilde in this example
  
 %\photo[60pt][0.4pt]{Images/CV_picture} % The first bracket is the picture height, the second is the thickness of the frame around the picture (0pt for no frame)
@@ -198,92 +211,49 @@
 \vspace{-20pt}
 \section{\textbf{Experience}}
 
+% \cventrycustom{feb/22}{Today}
+\cventry{\cventrycustom{feb/22}{Today}}{\textbf{Business Performance Analyst}}{Airbus}{Broughton}{UK}{}
 
+\vspace{5pt}
 
-\cventry{\cventrycustom{feb/22}{$\rightarrow$}{Today}}{\textbf{Business Performance Analyst}}{Airbus}{Broughton}{UK}{}
-\cventry{\cventrycustom{feb/20}{$\rightarrow$}{feb/22}}{\textbf{Quality Data \& reporting specialist}}{Airbus}{Broughton}{UK}{}
+\cventry{\cventrycustom{feb/20}{feb/22}}{\textbf{Quality Data \& reporting specialist}}{Airbus}{Broughton}{UK}{}
 
+\vspace{5pt}
 
+\cventry{\cventrycustom{jul/17}{jan/20}}{\textbf{Data Scientist \& Software developer}}{Alten}{Puerto Real}{Spain}{}
 
-\cventry{\cventrycustom{jul/17}{$\rightarrow$}{jan/20}}{\textbf{Data Scientist \& Software developer}}{Alten}{Puerto Real}{Spain}{}
+\vspace{5pt}
 
+\cventry{\cventrycustom{jul/16}{jul/17}}{\textbf{Internship at Manufacturing Engineering}}{Airbus}{Puerto Real}{Spain}{}
 
+\vspace{5pt}
 
-\cventry{\cventrycustom{jul/16}{$\rightarrow$}{jul/17}}{\textbf{Internship at Manufacturing Engineering}}{Airbus}{Puerto Real}{Spain}{}
-\cventry{\cventrycustom{oct/14}{$\rightarrow$}{jan/15}}
+\cventry{\cventrycustom{oct/14}{jan/15}}
 			{\textbf{Internship at NC Programs \& Automatization}}{Airbus Defence \& Space}{El Puerto de Santa María}{Spain}{}
-
-
-
-
-%\vspace{3pt}
-%\scriptsize{Programming software to organise, upload and normalize data from the automatic machines.}  
-
 
 %----------------------------------------------------------------------------------------
 %	EDUCATION SECTION
 %----------------------------------------------------------------------------------------
-%\vspace{-20pt}
+
+\vspace{1\baselineskip}
+
 \section{\textbf{Academic background}}
-\cventry{\cventrycustom{oct/20}{$\rightarrow$}{Present}}{Master Science in Astronautics and Space Engineering}{Cranfield University}{Cranfield}{}{}
-\cventry{\cventrycustom{jan/18}{$\rightarrow$}{mar/21}}{Master Science in Business Analytics and Big Data}{Camilo José Cela University - IMF Business School}{Madrid}{}{}
-\cventry{\cventrycustom{sep/16}{$\rightarrow$}{mar/17}}{Master in Professional Development}{Alcalá de Henares University}{Madrid}{}{}
-\cventry{\cventrycustom{oct/11}{$\rightarrow$}{apr/18}}{Degree in Aerospace Engineering}{Cádiz University}{Cádiz}{}{Specialising in Airplanes}
-%\cventry{2009--2011}{A-level courses}{Compañía de María school}{San Fernando}{Cádiz}{}%{\textit{GPA -- 8.9}}{}  % Arguments not required can be left empty
-%\cventry{1996--2009}{Primary and secondary education}{Compañía de María school}{San Fernando}{Cádiz}{}
+\cventry{\cventrycustom{oct/20}{Present}}{Master Science in Astronautics and Space Engineering}{Cranfield University}{Cranfield}{}{}
+\cventry{\cventrycustom{jan/18}{mar/21}}{Master Science in Business Analytics and Big Data}{Camilo José Cela University - IMF Business School}{Madrid}{}{}
+\cventry{\cventrycustom{sep/16}{mar/17}}{Master in Professional Development}{Alcalá de Henares University}{Madrid}{}{}
 
-%\vspace{1\baselineskip}
-%\vspace{20pt}
-\section{\textbf{Courses}}
+\cventry{\cventrycustom{sep/15}{jul/16}}{Cambridge Advance English course}{Bromley College}{London}{}{}
 
-%\subsection{\textbf{Language}}
-
-\cventry{\cventrycustom{sep/15}{$\rightarrow$}{jul/16}}{English course for Cambridge Advance certificate}{Bromley College}{London}{}{}
-\cventry{\cventrycustom{aug/14}{\&}{aug/15}}{English linguistic immersion}{Menéndez Pelayo International University}{Madrid}{}{}
-
-%\subsection{\textbf{Design}}
-
-\cventry{\cventrycustom{oct/13}{$\rightarrow$}{jun/14}}{CATIA V5R20 (Hybrid Design 2)}{Fundación Universidad Empresa de la provincia de Cádiz (FUECA)}{Cádiz}{}{}%\setlength{\parindent}{4mm}\vspace*{0.0mm}\textcolor{airbus}{\textsc{Hybrid Design 2}}
-%\newline{}
-%\begin{minipage}[t]{0.5\linewidth}
-%\begin{itemize}
-%\item Sketcher 
-%\item Part design 
-%\item Knowledge 
-%\item Assembly design
-%\end{itemize}
-%\end{minipage}%
-%\begin{minipage}[t]{0.5\linewidth}
-%\begin{itemize}
-%\item Generative shape
-%\item Generative drafting
-%\item Interactive drafting
-%\item Wireframe and surface design	
-%\end{itemize}
-%\end{minipage}
-%------------------------------------------------
-%}
-%\vspace*{3mm}
-%\cventry{2013}{Autodesk Inventor Professional}{University of Cádiz (UCA)}{Cádiz}{}{}
+\cventry{\cventrycustom{oct/11}{apr/18}}{Degree in Aerospace Engineering}{Cádiz University}{Cádiz}{}{Specialising in Airplanes}
 
 %----------------------------------------------------------------------------------------
-%	LANGUAGES SECTION
+%	TIMELINE
 %----------------------------------------------------------------------------------------
-%\vspace{1\baselineskip}
-\newpage
-\section{\textbf{Languages}}
-
-\cvitemwithcomment{\cventrycustom{SPANISH}{}{}}{Native speaker.}{}
-\cvitemwithcomment{\cventrycustom{ENGLISH}{}{}}{Proficient.}{}
-%\cvitemwithcomment{\cventrycustom{FRENCH}{}{}}{Beginner.}{}
 
 \vspace{1\baselineskip}
 \section{\textbf{Professional Timeline}}
 
 %\vspace{1\baselineskip}
-%----------------------------------------------------------------------------------------
-%	TIMELINE
-%----------------------------------------------------------------------------------------
 
 \begin{minipage}{1.0\columnwidth}
   \centering
@@ -361,77 +331,56 @@
 
 
 
+
+%\section{\textbf{Courses}}
+%\cventry{\cventrycustom{sep/15}{$\rightarrow$}{jul/16}}{English course for Cambridge Advance certificate}{Bromley College}{London}{}{}
+%\cventry{\cventrycustom{aug/14}{\&}{aug/15}}{English linguistic immersion}{Menéndez Pelayo International University}{Madrid}{}{}
+%\cventry{\cventrycustom{oct/13}{$\rightarrow$}{jun/14}}{CATIA V5R20 (Hybrid Design 2)}{Fundación Universidad Empresa de la provincia de Cádiz (FUECA)}{Cádiz}{}{}
+
+%%----------------------------------------------------------------------------------------
+%%	LANGUAGES SECTION
+%%----------------------------------------------------------------------------------------
+%%\vspace{1\baselineskip}
+%\newpage
+%\section{\textbf{Languages}}
+%
+%\cvitemwithcomment{\cventrycustom{SPANISH}{}{}}{Native speaker.}{}
+%\cvitemwithcomment{\cventrycustom{ENGLISH}{}{}}{Proficient.}{}
+
+
+
+
+
+
 %%----------------------------------------------------------------------------------------
 %%	COMPUTER SKILLS SECTION
 %%----------------------------------------------------------------------------------------
-\vspace{1\baselineskip}
-\section{\textbf{Skills}}
-
-\begin{center}
-\begingroup
-\setlength{\tabcolsep}{12pt} % Default value: 6pt
-\renewcommand{\arraystretch}{0.65} % Default value: 1
-\textcolor{color1}{\textbf{\textsc{Professional}}}\\
-\begin{tabular}{l | c | c }
-\multicolumn{3}{c}{} \\
-\multicolumn{1}{c}{\cventrycustom{TRANSFERABLE}{}{}} & \multicolumn{1}{c}{\cventrycustom{SPECIAL KNOWLEDGES}{}{}} & \cventrycustom{TRAITS}{}{}\\
-\tiny{Creating and innovating new methods/tools.} 		& \tiny{Data Science} & \tiny{Responsible}\\
-\tiny{Researching and improve processes/tasks.} 		& \tiny{Data Analysis} & \tiny{Reliable}\\
-\tiny{Initiating and promoting pioneer ideas.} 			& \tiny{Programming} & \tiny{Persistent}\\
-\tiny{Working with numbers and computing.} 				& \tiny{Aerodynamics} & \tiny{Methodical}\\
-\tiny{Analyzing data/information and find patterns.} 	& \tiny{Aeroelasticity} & \tiny{Enthusiastic}\\
-\tiny{Using my brain to face challenges.} 				& \tiny{Physics} & \tiny{Patient}\\
-\tiny{Teaching, training and coaching.} 				& \tiny{Mathematics} & \tiny{Self-motivated}\\
-\tiny{Programming \& designing algorithms.} 			& \tiny{Statistics} & \tiny{Dynamic}\\
-\tiny{Studying and observing.} 							& \tiny{Machine Learning} & \tiny{Versatile}\\
-\tiny{Following through, getting things done.} 			& \tiny{Big Data} & \tiny{Achievement-oriented}     
-\end{tabular}
-\endgroup
-\end{center}
-
-
-\begingroup
-\setlength{\tabcolsep}{12pt} % Default value: 6pt
-\renewcommand{\arraystretch}{0.65} % Default value: 1
-\begin{center}
-\textcolor{color1}{\textbf{\textsc{Computer}}}\\
-\begin{tabular}{c  c | c  c | c }
-\multicolumn{5}{c}{} \\
-\multicolumn{2}{c}{\cventrycustom{CODING}{}{}} & \multicolumn{2}{c}{\cventrycustom{SOFTWARE}{}{}} & \multicolumn{1}{c}{\cventrycustom{OS}{}{}}\\
-\tiny{Python \& Pyspark} 			& \tiny{SQL} 		& \tiny{Skywise} 		& \tiny{Spyder/Jupyter} 	& \tiny{Microsoft Windows}  \\
-\tiny{JavaScript} 					& \tiny{HTML} 		& \tiny{GSuite} 		& \tiny{RStudio} 			& \tiny{Linux}   \\
-\tiny{CSS} 							& \tiny{R} 			& \tiny{MS. Office} 	& \tiny{MySQL} 				& \tiny{Macintosh}  \\
-\tiny{VB \& VBS} 					& \tiny{C} 			& \tiny{Tableau}		& \tiny{Pentaho}  			& \tiny{Android OS / iOS}  \\
-\tiny{LaTex} 						& \tiny{Batch} 					& \tiny{GitHub} 		& \tiny{Gephi}				& 
-\end{tabular}
-\end{center}
-\endgroup
-\vspace{1\baselineskip}
-%\cvitem{}{
+%\vspace{1\baselineskip}
+%\section{\textbf{Skills}}
+%
 %\begin{center}
 %\begingroup
 %\setlength{\tabcolsep}{12pt} % Default value: 6pt
 %\renewcommand{\arraystretch}{0.65} % Default value: 1
-%\textcolor{color1}{\textbf{\textsc{Professional}}}
+%\textcolor{color1}{\textbf{\textsc{Professional}}}\\
 %\begin{tabular}{l | c | c }
 %\multicolumn{3}{c}{} \\
-%\multicolumn{1}{c}{\cventrycustom{FUNCTIONAL}{}{}} & \cventrycustom{SPECIAL KNOWLEDGES}{}{} & \cventrycustom{TRAITS}{}{}\\
+%\multicolumn{1}{c}{\cventrycustom{TRANSFERABLE}{}{}} & \multicolumn{1}{c}{\cventrycustom{SPECIAL KNOWLEDGES}{}{}} & \cventrycustom{TRAITS}{}{}\\
 %\tiny{Creating and innovating new methods/tools.} 		& \tiny{Data Science} & \tiny{Responsible}\\
-%\tiny{Researching and improve processes/tasks.} 		& \tiny{Aerodynamics \& Physics} & \tiny{Reliable}\\
-%\tiny{Initiating and promoting pioneer ideas.} 			& \tiny{Data Analysis} & \tiny{Persistent}\\
-%\tiny{Working with numbers and computing.} 				& \tiny{Statistics} & \tiny{Methodical}\\
-%\tiny{Analyzing data/information and find patterns.} 	& \tiny{Aerodynamics \& Physics} & \tiny{Enthusiastic}\\
-%\tiny{Using my brain to face challenges.} 				& \tiny{Aerodynamics \& Physics} & \tiny{Patient}\\
-%\tiny{Teaching and training toward new mindsets.} 		& \tiny{Aerodynamics \& Physics} & \tiny{Self-motivated}\\
-%\tiny{Programming \& designing algorithms.} 							& \tiny{Aerodynamics \& Physics} & \tiny{Dynamic}\\
-%\tiny{Studying and observing.} 							& \tiny{Aerodynamics \& Physics} & \tiny{Versatile}\\
-%\tiny{Following through, getting things done.} 							& \tiny{Aerodynamics \& Physics} & \tiny{Achievement-oriented}     
+%\tiny{Researching and improve processes/tasks.} 		& \tiny{Data Analysis} & \tiny{Reliable}\\
+%\tiny{Initiating and promoting pioneer ideas.} 			& \tiny{Programming} & \tiny{Persistent}\\
+%\tiny{Working with numbers and computing.} 				& \tiny{Aerodynamics} & \tiny{Methodical}\\
+%\tiny{Analyzing data/information and find patterns.} 	& \tiny{Aeroelasticity} & \tiny{Enthusiastic}\\
+%\tiny{Using my brain to face challenges.} 				& \tiny{Physics} & \tiny{Patient}\\
+%\tiny{Teaching, training and coaching.} 				& \tiny{Mathematics} & \tiny{Self-motivated}\\
+%\tiny{Programming \& designing algorithms.} 			& \tiny{Statistics} & \tiny{Dynamic}\\
+%\tiny{Studying and observing.} 							& \tiny{Machine Learning} & \tiny{Versatile}\\
+%\tiny{Following through, getting things done.} 			& \tiny{Big Data} & \tiny{Achievement-oriented}     
 %\end{tabular}
 %\endgroup
-%\end{center}}
-%%\vspace{1\baselineskip}
-%
-%\cvitem{}{
+%\end{center}
+
+
 %\begingroup
 %\setlength{\tabcolsep}{12pt} % Default value: 6pt
 %\renewcommand{\arraystretch}{0.65} % Default value: 1
@@ -440,44 +389,33 @@
 %\begin{tabular}{c  c | c  c | c }
 %\multicolumn{5}{c}{} \\
 %\multicolumn{2}{c}{\cventrycustom{CODING}{}{}} & \multicolumn{2}{c}{\cventrycustom{SOFTWARE}{}{}} & \multicolumn{1}{c}{\cventrycustom{OS}{}{}}\\
-%\tiny{Python} 		& \tiny{SQL} 	& \tiny{MS Office} 		& \tiny{CATIA V5R20} 	& \tiny{Microsoft Windows}  \\
-%\tiny{VB \& VBS} 	& \tiny{R} 		& \tiny{Anaconda} 		& \tiny{Mathematica} 	& \tiny{Android OS}   \\
-%\tiny{HTML} 		& \tiny{CSS} 	& \tiny{SQLiteStudio} 	& \tiny{XAMPP} 			& \tiny{Linux}  \\
-%\tiny{JavaScript} 	& \tiny{C} 		& \tiny{VirtualBox} 	& \tiny{Eclipse} 		&  \\
-%\tiny{LaTex} 		&  				& \tiny{GitHub} 		&  						& 
+%\tiny{Python \& Pyspark} 			& \tiny{SQL} 		& \tiny{Skywise} 		& \tiny{Spyder/Jupyter} 	& \tiny{Microsoft Windows}  \\
+%\tiny{JavaScript} 					& \tiny{HTML} 		& \tiny{GSuite} 		& \tiny{RStudio} 			& \tiny{Linux}   \\
+%\tiny{CSS} 							& \tiny{R} 			& \tiny{MS. Office} 	& \tiny{MySQL} 				& \tiny{Macintosh}  \\
+%\tiny{VB \& VBS} 					& \tiny{C} 			& \tiny{Tableau}		& \tiny{Pentaho}  			& \tiny{Android OS / iOS}  \\
+%\tiny{LaTex} 						& \tiny{Batch} 					& \tiny{GitHub} 		& \tiny{Gephi}				& 
 %\end{tabular}
 %\end{center}
 %\endgroup
-%}
-
-
-%\subsection{\small{\textbf{Computer}}}
-%\cvitem{\cventrycustom{SOFTWARE}{}{}}{Microsoft Office (highly proficient), Anaconda (Jupyter, Spyder and RStudio), SQLiteStudio, VirtualBox, GitHub, CATIA V5R20, Eclipse, XAMPP, AutoCAD, Mathematica, MatLab and Ansys Fluent.}
-%\cvitem{\cventrycustom{PROGRAMMING}{}{}}{VBS  \& VBA (highly proficient), Python, R, SQL, JavaScript, HTML, CSS, \textsc{C}, SAP Scripting and LaTex.}
-%\cvitem{\cventrycustom{OS}{}{}}{Linux and Microsoft Windows.}
 %\vspace{1\baselineskip}
-%\subsection{\small{\textbf{Personal}}}
-
-%\cvitem{\cventrycustom{CAPACITY}{}{}}{Effective and structured personal organisation with ability to remain composed and focused under pressure.}
-%\cvitem{\cventrycustom{VERSATILITY}{}{}}{Ability to reach succesfully the expertise to work on new projects learning new methods.}
-%\cvitem{\cventrycustom{INITIATIVE}{}{}}{Self motivated with the ability and enthusiasm to find creative solutions. Actively pursuing to improve and develop new skills.}
-%\cvitem{\cventrycustom{COMMUNICATION}{}{}}{Strong verbal and written communication skills.}
 
 
 
-%----------------------------------------------------------------------------------------
-%	INTERESTS SECTION
-%----------------------------------------------------------------------------------------
-%\vspace{1\baselineskip}
-\section{\textbf{Interests}}
 
-\renewcommand{\listitemsymbol}{-~} % Changes the symbol used for lists
 
-\cvlistdoubleitem{Data Science}{Data Analysis}
-\cvlistdoubleitem{Machine learning}{Big Data}
-\cvlistdoubleitem{Statistics}{Mathematics}
-\cvlistdoubleitem{Physics}{Aerodynamics}
-\cvlistdoubleitem{Astrodynamics}{Space Engineering}
+%%----------------------------------------------------------------------------------------
+%%	INTERESTS SECTION
+%%----------------------------------------------------------------------------------------
+%%\vspace{1\baselineskip}
+%\section{\textbf{Interests}}
+%
+%\renewcommand{\listitemsymbol}{-~} % Changes the symbol used for lists
+%
+%\cvlistdoubleitem{Data Science}{Data Analysis}
+%\cvlistdoubleitem{Machine learning}{Big Data}
+%\cvlistdoubleitem{Statistics}{Mathematics}
+%\cvlistdoubleitem{Physics}{Aerodynamics}
+%\cvlistdoubleitem{Astrodynamics}{Space Engineering}
 
 
 
