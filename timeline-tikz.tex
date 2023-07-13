@@ -1,0 +1,70 @@
+\begin{tikzpicture}
+
+
+
+
+
+
+%% The bar with a final arrow
+%\shade[rounded corners=0cm, top color=color1!80,bottom color=color1!80] (0,0.7) -- (0,1.3) -- (20.5,1.3) -- (21,1) -- (21,1) -- (20.5,0.70);
+%
+%% The nodes from 2006 to 2015
+%\draw (3,1) node[circle,fill=secondary!30!white,draw]{\small{2011}};
+%\draw (5,1) node[circle,fill=secondary!30!white,draw]{\small{2012}};
+%\draw (7,1) node[circle,fill=secondary!30!white,draw]{\small{2013}};
+%\draw (9,1) node[circle,fill=secondary!30!white,draw]{\small{2014}};
+%\draw (11,1) node[circle,fill=secondary!30!white,draw]{\small{2015}};
+%\draw (13,1) node[circle,fill=secondary!30!white,draw]{\small{2016}};
+%\draw (15,1) node[circle,fill=secondary!30!white,draw]{\small{2017}};
+%\draw (17,1) node[circle,fill=secondary!30!white,draw]{\small{2018}};
+
+%\showTheGrid{0}
+
+% Draw vertical lines of grid
+\foreach \y in {3,...,\the\numexpr\aspectW} { 
+	\draw[black!20!white] (\y,0) -- (\y,\vreference+0.5);}
+
+% Draw x-axis labels of grid (years)
+\foreach \x in {\firstyear,...,\lastyear} {
+	\ifodd \x \node[below] at (\x-2007,0){\tiny{\textsc{\x}}} 
+	\else \node[below] at (\x-2007,0){\small{\textsc{\x}}}\fi;
+	
+	}
+
+% Education
+%
+%\node [above right, color1] at (0,9.40){\Large Timeline};
+
+\draw[dashed, very thick] (0,0) -- (3,0);
+\draw[very thick,->] (3,0) -- (\lastyear-\firstyear+4.5,0);
+
+
+
+
+% Create timeline with education and work-experience items using the following args:
+% #1 - Type of item
+% #2 - Item order
+% #3 - Start in year
+% #4 - Start in month
+% #5 - Finish in year
+% #6 - Finish in month
+% #7 - Title of item
+% #8 - MMM/YY of start
+% #9 - MMM/YY of end or empty if present.
+\timelineitem{experienceBar}{10}{2022}{2}{\yearnum}{\monthnum}{Airbus (OWE)}{feb/22}{}
+\timelineitem{educationBar}{9}{2020}{10}{\yearnum}{\monthnum}{MSc. in Astronautics}{oct/20}{}
+\timelineitem{experienceBar}{8}{2020}{2}{2022}{1}{Airbus (QMO)}{feb/20}{jan/22}
+\timelineitem{educationBar}{7}{2018}{1}{2021}{3}{MSc. in Big Data}{jan/18}{mar/21}
+\timelineitem{experienceBar}{6}{2017}{7}{2020}{1}{Alten}{jul/17}{jan/20}
+\timelineitem{educationBar}{5}{2016}{9}{2017}{6}{MBA in Prof. Dev.}{sep/15}{jun/17}
+\timelineitem{experienceBar}{4}{2016}{7}{2017}{7}{Airbus (DRK)}{jul/16}{jul/17}
+\timelineitem{educationBar}{3}{2015}{9}{2016}{7}{CAE course}{sep/15}{jul/16}
+\timelineitem{experienceBar}{2}{2014}{10}{2015}{1}{Airbus}{oct/14}{jan/15}
+\timelineitem{educationBar}{1}{2011}{11}{2018}{4}{BEng. in Aerospace Eng.}{oct/11}{apr/18}
+
+
+
+\draw[red] (\yearnum - \firstyear + \monthnum /12 + \hreference,-0.5) -- (\yearnum - \firstyear + \monthnum /12 + \hreference,\vreference+0.5);
+\node[below, red] at (\yearnum - \firstyear + \monthnum /12 + \hreference ,-0.5){\tiny{\textsc{\MONTH \ \yearnum }}};
+
+\end{tikzpicture}

@@ -1,0 +1,76 @@
+\ProvidesPackage{custom-tikz}
+
+%
+% TikZ: styles and functions
+% 
+\usepackage{tikz}
+\usetikzlibrary{mindmap,calc,patterns,decorations.pathmorphing,decorations.markings}
+
+\tikzstyle{educationBar}   = [rounded corners=1mm,fill=color1, draw=white]
+\tikzstyle{educationText}  = [rectangle, above=.1cm, align=center, font=\sffamily,scale=1.0]
+\tikzstyle{experienceBar}  = [rounded corners=1mm,fill=black!40!white, draw=white]
+\tikzstyle{experienceText} = [rectangle, below=.1cm, align=center, font=\sffamily,scale=1.00]
+
+
+
+% Function to hide/unhide the grid
+% Usage:
+%\showTheGrid{1} %TRUN ON
+%\showTheGrid{0} TRUN OFF
+\newcommand{\hreference}{4}
+\newcommand{\vreference}{3}
+\newcommand{\scalefactor}{0.33}
+\newcommand{\firstyear}{2011}
+\newcommand{\lastyear}{\the\numexpr\yearnum+1}
+\newcommand{\yearspace}{2}
+
+\newcommand{\aspectW}{\yearnum - \firstyear + 4}
+\newcommand{\aspectH}{3.5}
+\newcommand{\showTheGrid}[1]{
+    %\draw[step=1cm,gray,very thin, opacity=#1] (0,0) grid (\aspectW,\aspectH);
+    \foreach \x in {1,...,\the\numexpr\aspectW} {
+    	
+		\draw [blue, opacity=#1] (\x,0) -- (\x,0) node[above] {\small{\x}};}
+%    \ifodd\x\relax
+%		%\draw [blue, opacity=#1] (\x,\aspectH/2) -- (\x,\aspectH/2) node[below] {\huge{\x}};
+%		\else
+%	\fi }
+    \foreach \y in {0,0.5,...,\the\numexpr\aspectH} {
+		\draw [red, opacity=#1] (0,\y) -- (0,\y) node[left] {\small{\y}};}
+%    \ifodd\y\relax
+%		%\draw [red, opacity=#1] (\aspectW/2, \y) -- (\aspectW/2, \y) node[right] {\huge{\y}};
+%		\else
+%	\fi }
+		}
+
+
+
+% #1 - Type of item
+% #2 - Item order
+% #3 - Start in year
+% #4 - Start in month
+% #5 - Finish in year
+% #6 - Finish in month
+% #7 - Title of item
+% #8 - MMM/YY of start
+% #9 - MMM/YY of end or empty if present.
+
+
+\newcommand{\timelineitem}[9]{
+\draw[thin,black!20!white,->] (2.9,\scalefactor*#2) -- (#3 + #4/12 - \firstyear + 3,\scalefactor*#2);
+
+\filldraw[#1] ((#3 + #4/12 -1/12 - \firstyear + 4,-0.1+\scalefactor*#2) rectangle ((#5 + #6/12 - \firstyear + 4,0.1+\scalefactor*#2);
+
+\node[right] at (0,\scalefactor*#2){\tiny{\textsc{#7}}};
+
+%\node[above] at (\hreference + 43/6,\vreference-\scalefactor*0){\tiny{\textsc{Degree in Aerospace Engineering}}};
+\node[left] at (#3 + #4/12  - \firstyear + 4,\scalefactor*#2){\tiny{\textsc{#8}}};
+
+\node[right] at (#5 + #6/12 - \firstyear + 4,\scalefactor*#2){\tiny{\textsc{#9}}};
+}
+
+
+
+
+
+\makeatother
