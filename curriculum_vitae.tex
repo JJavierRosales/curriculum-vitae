@@ -1,25 +1,25 @@
 %%COMPILADO CON XELATEX
 \documentclass[12pt,a4paper,roman]{moderncv}
 
-
-
-\usepackage{setspace}
-%\usepackage[scale=0.75]{geometry}
+% Package to set the dimensions of the paper.
 \usepackage[total={17.5cm,24cm},top=2.0cm, left=1.5cm]{geometry}
-%\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+% Define CV style and color
 \moderncvstyle{classic}
 \moderncvcolor{burgundy}
-\moderncvicons{awesome}
+%\usepackage{setspace}
+
+
+
+% Package to include special characters.
 \usepackage{fontspec}
-\usepackage{moderntimeline}
+
+% Package to create block comments.
+\usepackage{comment}
+
+% Package to extract datetime information
 \usepackage[nodayofweek]{datetime}
-\newdateformat{monthyeardate}{\monthname[\THEMONTH], \THEYEAR}
-\usepackage{tabularx}
 
-\usepackage{ifthen}
-
-
-\usepackage{datenumber}
 
 
 \definecolor{airbus}{RGB}{8,40,78}			% Airbus official color
@@ -27,46 +27,53 @@
 \definecolor{color1}{RGB}{30,49,116}			% burgundy
 \definecolor{color2}{rgb}{0.45,0.45,0.45}	% dark grey
 
-\newcommand{\monthnum}{\the\month}
-\newcommand{\yearnum}{\the\year}
-\newcommand{\MONTH}{%
-  \ifcase\the\month
-  \or Jan% 1
-  \or Feb% 2
-  \or Mar% 3
-  \or Apr% 4
-  \or May% 5
-  \or Jun% 6
-  \or Jul% 7
-  \or Aug% 8
-  \or Sep% 9
-  \or Oct% 10
-  \or Nov% 11
-  \or Dec% 12
-  \fi}
-\makeatletter
-\newcommand{\YEAR}{\the\year}
-\makeatother
+\newcommand{\currentmonth}{\the\month}
+\newcommand{\currentyear}{\the\year}
 
 
 
-\newcommand{\cventrycustom}[2]{\textcolor{color1}{\scriptsize{
-\begin{tabular}{p{0.06\textwidth} p{0.03\textwidth} p{0.06\textwidth}}
-	\textsc{#1} & \ $\rightarrow$ \ & \textsc{#2}
-\end{tabular}
-}}}
+\newcommand{\cventrycustom}[2]{
+	\textcolor{color1}{
+		\scriptsize{
+			\begin{tabular}{p{0.06\textwidth} p{0.03\textwidth} p{0.06\textwidth}}
+				\textsc{#1} & \ $\rightarrow$ \ & \textsc{#2}
+			\end{tabular}
+		}
+	}
+}
+
+\begin{comment}
+\usepackage{tabularx}
+\newcommand{\cvfirstentry}[2]{
+\begin{tabularx}{{\raggedright\arraybackslash}X{0.8\textwidth} {\raggedleft\arraybackslash}X{0.2\textwidth}}
+ #1  & #2 
+\end{tabularx}
+}
 
 
-\firstname{\Large José Javier \vspace{9pt} \newline} % Your first name
-\familyname{\huge \textbf{Rosales Ruiz}} % Your last name
-\title{\large \textsc{Aerospace Engineer \newline \textsc{Data Scientist}}}
+\renewcommand*{\cventry}[7][.25em]{%
+  \cvitem[#1]{#2}{%
+    {\cvfirstentry{\bfseries #3}{\textsc{#4}}}%
+    \ifthenelse{\equal{#4}{}}{}{\newline \footnotesize {\slshape#4}}%
+    \ifthenelse{\equal{#5}{}}{}{, #5}%
+    \ifthenelse{\equal{#6}{}}{}{, #6}%
+    .\strut%
+    \ifx&#7&%
+    \else{\newline{}\begin{minipage}[t]{\linewidth}\small#7\end{minipage}}\fi}}	
+\end{comment}
+
+
+
+\firstname{\Large José Javier \vspace{9pt} } % Your first name
+\familyname{\huge \textbf{Rosales Ruiz}\newline 
+\color{color2}{\large \textsc{Aerospace Engineer \newline \textsc{Data Scientist}}}} % Your last name
+%\title{}
 
 % All information in this block is optional, comment out any lines you don't need
-%\title{ \large Curriculum Vit\ae}
+%\title{}
 %\date{\today}
-%\address{ \textcolor{black}{\textsc{PERSONAL DATA}}\\ }{}
+%\address{}{}{}
 %\mobile{+34 645 526 183}
-%\mobile{+44 (0)7394 811 610}
 %\phone[fixed]{+34 856 216 906}
 %\email{javier.rosalesruiz@gmail.com }
 
@@ -89,31 +96,26 @@
 	pdfauthor={José Javier Rosales Ruiz},
     pdftitle={Curriculum Vitae},
     pdfsubject={Aerospace Engineering},
-    pdfkeywords={javier.rosalesriz@gmail.com},
-    pdfproducer={LaTex},
-    pdfcreator={XeLatex}
+    pdfkeywords={javier.rosalesruiz@gmail.com},
     pdfnewwindow=true,      % links in new window
-    colorlinks=true,       % false: boxed links; true: colored links
-    linkcolor=black,          % color of internal links (change box color with linkbordercolor)
-    citecolor=black,        % color of links to bibliography
-    filecolor=black,      % color of file links
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=black,        % color of internal links (change box color with linkbordercolor)
+    filecolor=black,        % color of file links
     urlcolor=gray           % color of external links
     }}
 
 
-\colorlet{secondary}{color1!25!color2}
-\usepackage{eurosym}
-\usepackage{comment}
-\usepackage{scalefnt}
-	
-\usepackage[margin=10pt,font=small,labelfont=bf]{caption}
 
-\includecomment{en} % English language
+
+	
 
 % Initialise 'tikz' package and declare function to create a grid.
 \usepackage{custom-tikz}	
 
-
+\newcommand{\cvsection}[1]{
+	\section{\textbf{#1}}
+	\vspace{1\baselineskip}
+}
 
 \begin{document}
 
@@ -124,10 +126,9 @@
 %%----------------------------------------------------------------------------------------
 %%	WORK EXPERIENCE SECTION
 %%----------------------------------------------------------------------------------------
-\vspace{-20pt}
-\section{\textbf{Experience}}
+\vspace{-2\baselineskip}
+\cvsection{Experience}
 
-% \cventrycustom{feb/22}{Today}
 \cventry{\cventrycustom{feb/22}{Today}}{\textbf{Business Performance Analyst (OWE)}}{Airbus}{Broughton}{UK}{}
 
 \vspace{5pt}
@@ -148,12 +149,13 @@
 			{\textbf{Internship at NC Programs \& Automatization}}{Airbus Defence \& Space}{El Puerto de Santa María}{Spain}{}
 
 %----------------------------------------------------------------------------------------
-%	EDUCATION SECTION
+%	ACADEMIC SECTION
 %----------------------------------------------------------------------------------------
 
 \vspace{1\baselineskip}
 
-\section{\textbf{Academic background}}
+\cvsection{Academic background}
+
 \cventry{\cventrycustom{oct/20}{Today}}{Master Science in Astronautics and Space Engineering}{Cranfield University}{Cranfield}{}{}
 \cventry{\cventrycustom{jan/18}{mar/21}}{Master Science in Business Analytics and Big Data}{Camilo José Cela University - IMF Business School}{Madrid}{}{}
 \cventry{\cventrycustom{sep/16}{mar/17}}{Master in Professional Development}{Alcalá de Henares University}{Madrid}{}{}
@@ -167,9 +169,7 @@
 %----------------------------------------------------------------------------------------
 
 \vspace{1\baselineskip}
-\section{\textbf{Professional Timeline}}
-
-%\vspace{1\baselineskip}
+\cvsection{Professional Timeline}
 
 \begin{minipage}{1.0\columnwidth}
   \centering
@@ -182,7 +182,9 @@
 
 
 
-
+%%----------------------------------------------------------------------------------------
+%%	COURSES SECTION
+%%----------------------------------------------------------------------------------------
 %\section{\textbf{Courses}}
 %\cventry{\cventrycustom{sep/15}{$\rightarrow$}{jul/16}}{English course for Cambridge Advance certificate}{Bromley College}{London}{}{}
 %\cventry{\cventrycustom{aug/14}{\&}{aug/15}}{English linguistic immersion}{Menéndez Pelayo International University}{Madrid}{}{}
@@ -197,10 +199,6 @@
 %
 %\cvitemwithcomment{\cventrycustom{SPANISH}{}{}}{Native speaker.}{}
 %\cvitemwithcomment{\cventrycustom{ENGLISH}{}{}}{Proficient.}{}
-
-
-
-
 
 
 %%----------------------------------------------------------------------------------------
@@ -249,25 +247,6 @@
 %\end{center}
 %\endgroup
 %\vspace{1\baselineskip}
-
-
-
-
-
-%%----------------------------------------------------------------------------------------
-%%	INTERESTS SECTION
-%%----------------------------------------------------------------------------------------
-%%\vspace{1\baselineskip}
-%\section{\textbf{Interests}}
-%
-%\renewcommand{\listitemsymbol}{-~} % Changes the symbol used for lists
-%
-%\cvlistdoubleitem{Data Science}{Data Analysis}
-%\cvlistdoubleitem{Machine learning}{Big Data}
-%\cvlistdoubleitem{Statistics}{Mathematics}
-%\cvlistdoubleitem{Physics}{Aerodynamics}
-%\cvlistdoubleitem{Astrodynamics}{Space Engineering}
-
 
 
 
