@@ -1,76 +1,81 @@
 \ProvidesPackage{custom-tikz}
 
-%
-% TikZ: styles and functions
-% 
 \usepackage{tikz}
-\usetikzlibrary{mindmap,calc,patterns,decorations.pathmorphing,decorations.markings}
-
-\tikzstyle{educationBar}   = [rounded corners=1mm,fill=color1, draw=white]
-\tikzstyle{educationText}  = [rectangle, above=.1cm, align=center, font=\sffamily,scale=1.0]
-\tikzstyle{experienceBar}  = [rounded corners=1mm,fill=black!40!white, draw=white]
-\tikzstyle{experienceText} = [rectangle, below=.1cm, align=center, font=\sffamily,scale=1.00]
 
 
+% Import required TikZ libraries
+\usetikzlibrary{arrows,shapes,positioning}
+\usetikzlibrary{calc,mindmap,patterns,matrix}
+\usetikzlibrary{decorations.pathmorphing,
+				decorations.markings}
 
-% Function to hide/unhide the grid
+
+
 % Usage:
 %\showTheGrid{1} %TRUN ON
 %\showTheGrid{0} TRUN OFF
+
 \newcommand{\hreference}{4}
 \newcommand{\vreference}{3}
-\newcommand{\scalefactor}{0.33}
+\newcommand{\yticksstep}{0.33}
+\newcommand{\xticksstep}{1.0}
+
+% Define new commands for the first and last year of timeline.
 \newcommand{\firstyear}{2011}
-\newcommand{\lastyear}{\the\numexpr\yearnum+1}
-\newcommand{\yearspace}{2}
+\newcommand{\lastyear}{\the\numexpr\currentyear+1}
 
-\newcommand{\aspectW}{\yearnum - \firstyear + 4}
-\newcommand{\aspectH}{3.5}
-\newcommand{\showTheGrid}[1]{
-    %\draw[step=1cm,gray,very thin, opacity=#1] (0,0) grid (\aspectW,\aspectH);
-    \foreach \x in {1,...,\the\numexpr\aspectW} {
-    	
-		\draw [blue, opacity=#1] (\x,0) -- (\x,0) node[above] {\small{\x}};}
-%    \ifodd\x\relax
-%		%\draw [blue, opacity=#1] (\x,\aspectH/2) -- (\x,\aspectH/2) node[below] {\huge{\x}};
-%		\else
-%	\fi }
-    \foreach \y in {0,0.5,...,\the\numexpr\aspectH} {
-		\draw [red, opacity=#1] (0,\y) -- (0,\y) node[left] {\small{\y}};}
-%    \ifodd\y\relax
-%		%\draw [red, opacity=#1] (\aspectW/2, \y) -- (\aspectW/2, \y) node[right] {\huge{\y}};
-%		\else
-%	\fi }
-		}
+% Define X and Y axis upper limits.
+\newcommand{\xupperlimit}{\lastyear-\firstyear+1}
+\newcommand{\yupperlimit}{3.5}
 
 
+% Function to hide/unhide the grid
+\newcommand{\showaxislabels}[1]{
+    % Show X-ticks
+    \foreach \x in {1,...,\xupperlimit} {
+		\draw [blue, opacity=#1] (\x,0) -- (\x,0) node[above] {\small{\x}};
+	};
 
-% #1 - Type of item
+	% Show Y-ticks
+    \foreach \y in {0,0.5,...,\yupperlimit} {
+		\draw [red, opacity=#1] (0,\y) -- (0,\y) node[left] {\small{\y}};
+	};
+
+}
+
+% Define command to plot a vertical line showing the current date.
+\newcommand{\timelinetoday}{
+
+	% Plot name of the experience.
+	\draw[red] (\currentyear + \currentmonth /12 - \firstyear + 1,-0.5) -- (\currentyear + \currentmonth /12 - \firstyear  + 1,\yupperlimit);
+	\node[below, red] at (\currentyear - \firstyear + \currentmonth /12 + 1 ,-0.5){\tiny{\textsc{\monthname[\currentmonth] \ \currentyear}}};
+
+}
+
+% Command to plot the timeline:
+% #1 - Type of item (edu or job)
 % #2 - Item order
 % #3 - Start in year
 % #4 - Start in month
 % #5 - Finish in year
 % #6 - Finish in month
 % #7 - Title of item
-% #8 - MMM/YY of start
-% #9 - MMM/YY of end or empty if present.
 
+\newcommand{\timelineitem}[7]{
 
-\newcommand{\timelineitem}[9]{
-\draw[thin,black!20!white,->] (2.9,\scalefactor*#2) -- (#3 + #4/12 - \firstyear + 3,\scalefactor*#2);
+	% Plot name of the experience.
+	\node(title)[left] at (-0.1, \yticksstep*#2){\tiny{\textsc{#7}}};
 
-\filldraw[#1] ((#3 + #4/12 -1/12 - \firstyear + 4,-0.1+\scalefactor*#2) rectangle ((#5 + #6/12 - \firstyear + 4,0.1+\scalefactor*#2);
+	% Plot start date in the format MM/YY
+	\node(start_date)[left] at (#3 + #4/12  - \firstyear+1,\yticksstep*#2){\tiny{\textsc{\shortmonthname[#4]/\the\numexpr(#3-2000)}}};
 
-\node[right] at (0,\scalefactor*#2){\tiny{\textsc{#7}}};
+	% Plot start date in the format MM/YY
+	\node(end_date)[right] at (#5 + #6/12 - \firstyear+1,\yticksstep*#2){\tiny{\textsc{\shortmonthname[#6]/\the\numexpr(#5-2000)}}};
 
-%\node[above] at (\hreference + 43/6,\vreference-\scalefactor*0){\tiny{\textsc{Degree in Aerospace Engineering}}};
-\node[left] at (#3 + #4/12  - \firstyear + 4,\scalefactor*#2){\tiny{\textsc{#8}}};
+	% Plot horizontal arrow to match the title with the bar.
+	\draw[thin,black!20!white,->] (title) -- (start_date); 
 
-\node[right] at (#5 + #6/12 - \firstyear + 4,\scalefactor*#2){\tiny{\textsc{#9}}};
+	% Plot 
+	\filldraw[#1] ((#3 + #4/12 -1/12 - \firstyear+1,-0.1+\yticksstep*#2) rectangle ((#5 + #6/12 - \firstyear+1,0.1+\yticksstep*#2);
+
 }
-
-
-
-
-
-\makeatother
